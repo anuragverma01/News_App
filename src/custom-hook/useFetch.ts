@@ -18,7 +18,6 @@ export default function useFetchAPI() {
         )
           .then((res) => res.json())
           .catch((error) => {
-
             {
               return error;
             }
@@ -37,7 +36,7 @@ export default function useFetchAPI() {
         dispatch(setLoading(false));
       })
       .catch((error) => {
-        dispatch(setError('Failed to fetch data'));
+        dispatch(setError("Failed to fetch data"));
         dispatch(setLoading(false));
       });
   };

@@ -23,14 +23,14 @@ function Details () {
     (state: RootState) => state.setdata.loading
   );
   useEffect(() => {
-    fetchAllData();
-  }, []);
-
-  useEffect(() => {
     const categoryDetails: any = localStorage.getItem("Item-Detail");
     if (categoryDetails) {
       setfetchdata(JSON.parse(categoryDetails));
     }
+  }, []);
+  
+  useEffect(() => {
+    fetchAllData();
   }, []);
   if (HandleLoading) {
     return (
@@ -44,6 +44,8 @@ function Details () {
     return <div>Error: {HandleError}</div>;
   }
 
+ 
+
 
   return (
     <>
@@ -55,7 +57,7 @@ function Details () {
               <div className="flex w-full h-auto gap-4  flex-col md:flex-row justify-center ">
                 <div className=" w-full ">
                   <img
-                    className=" w-full h-[700px] object-fill rounded-xl"
+                    className=" w-full md:h-[700px] object-fill rounded-xl"
                     src={ fetchdata?.urlToImage }
                   />
                   <p className=" px-2 text-justify pt-6 pb-2 text-[18px] text-black font-semibold">

@@ -52,7 +52,7 @@ function Home() {
                   onClick={() => {
                     HandleClick(item.name);
                   }}
-                  className="border-2 rounded-xl py-2 px-4 text-sm font-medium "
+                  className="border-2 rounded-xl py-2 px-2 text-sm font-medium "
                 >
                   {item.name}
                 </button>
