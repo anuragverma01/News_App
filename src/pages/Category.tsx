@@ -4,12 +4,21 @@ import BottomPagination from "../components/Pagination";
 import useFetchCategory from "../custom-hook/useCategories";
 import Header from "../components/Header";
 import NewsCard from "../components/news-card";
+import { GridLoader } from "react-spinners";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store/AppStore";
+
 
 export default function Category ({ query }: any) {
   const [CurrentPage, setCurrentPage] = useState(1);
   const { id }: any = useParams();
   const { fetchCategoryData, categoryData, totalPage } = useFetchCategory();
-
+  const HandleError: any = useSelector(
+    (state: RootState) => state.setdata.error
+  );
+  const HandleLoading: any = useSelector(
+    (state: RootState) => state.setdata.loading
+  );
   useEffect(() => {
     if (id) {
       fetchCategoryData(id, 1);
@@ -20,6 +29,17 @@ export default function Category ({ query }: any) {
     setCurrentPage(page);
     fetchCategoryData(id, page);
   };
+  if (HandleLoading) {
+    return (
+      <div className="spinner-container flex items-center justify-center absolute top-0 bottom-0 right-0 left-0">
+        <GridLoader size={60} color={"#36d7b7"} loading={HandleLoading} />
+      </div>
+    );
+  }
+
+  if (HandleError) {
+    return <div>Error: {HandleError}</div>;
+  }
 
   return (
     <>
