@@ -1,17 +1,18 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { serviceEndPoints } from "../Networking/end-points";
-import { json } from "stream/consumers";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../Redux/slice/data";
 import { RootState } from "../Redux/Store/AppStore";
-import useFetchAPI from "../Custom-Hook/useFetch";
+import { useNavigate } from "react-router-dom";
 
 function Cards({ query }: any) {
   const data: any = useSelector((state: RootState) => state.setdata.data);
-  console.log("DATA FROM SELECTOR ~~~~~~~~~~~~", query, data?.[query]);   
+  console.log("DATA FROM SELECTOR ~~~~~~~~~~~~", query, data?.[query]);
   const fetchData = data?.[query] || [];
-  const { fetchAllData } = useFetchAPI();
+  const navigate = useNavigate();
+
+  const handleDetailClick = async (item: any) => {
+    await localStorage.setItem("Item-Detail", JSON.stringify(item));
+    navigate(`/detail/${item.title}`);
+  };
 
   return (
     <div className=" mx-10">
@@ -27,7 +28,12 @@ function Cards({ query }: any) {
         {fetchData?.slice(0, 5).map((item: any, index: any) => {
           if (item?.urlToImage) {
             return (
-              <div className="w-full md:h-min-[150px] md:max-w-[500px] p-2 bg-white rounded-md my-5 md:my-0 shadow-lg  ">
+              <div
+                onClick={() => {
+                  handleDetailClick(item);
+                }}
+                className="w-full md:h-min-[150px] md:max-w-[500px] p-2 bg-white rounded-md my-5 md:my-0 shadow-lg cursor-pointer  "
+              >
                 <img
                   className=" object-fill w-full h-[200px] rounded-lg"
                   src={item.urlToImage}

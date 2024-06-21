@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "./Cards";
 
 function Details() {
+  const [fetchdata, setfetchdata] = useState(null);
+  console.log("ITEMS DETAILS~~~~~~~~~", fetchdata);
+  useEffect(() => {
+    const categoryDetails: any = localStorage.getItem("Item-Detail");
+    console.log("AAA", categoryDetails);
+    if (categoryDetails) {
+      setfetchdata(JSON.parse(categoryDetails));
+    }
+  }, []);
   return (
     <>
       <div className=" md:flex my-10  ">

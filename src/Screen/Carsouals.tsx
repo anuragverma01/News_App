@@ -1,11 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/Store/AppStore";
+import { useNavigate } from "react-router-dom";
 
 function Carsouals({ query }: any) {
   const data: any = useSelector((state: RootState) => state.setdata.data);
   const fetchData = data?.[query] || [];
   console.log("CARSOUALS DAAT!!!!!!!!!", data);
+  const navigate = useNavigate();
+
+  const handleDetailClick = async (item: any) => {
+    await localStorage.setItem("Item-Detail", JSON.stringify(item));
+    navigate(`/detail/${item.title}`);
+  };
 
   return (
     <div className=" px-10  ">
@@ -18,7 +25,12 @@ function Carsouals({ query }: any) {
         {fetchData.slice(0, 7).map((item: any, index: any) => {
           if (item?.urlToImage) {
             return (
-              <div className="w-full md:h-min-[300px] md:max-w-[500px] p-2 bg-white rounded-md my-5 md:my-0 shadow-lg  ">
+              <div
+                onClick={() => {
+                  handleDetailClick(item);
+                }}
+                className="w-full md:h-min-[300px] md:max-w-[500px] p-2 bg-white rounded-md my-5 md:my-0 shadow-lg cursor-pointer "
+              >
                 <img
                   className=" object-cover w-full h-[300px] rounded-lg"
                   src={item.urlToImage}
