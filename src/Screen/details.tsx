@@ -101,23 +101,24 @@ function Details() {
           </div>
         </div>
 
-        <div className="  basis-4/5 h-full w-full md:max-w-[400px] md:max-h-48 flex flex-col ">
+        <div className="md:w-[35%] flex  w-full flex-col">
           <div className=" flex px-2 items-center py-5 gap-2 ">
             <p className=" w-1 h-8 bg-red-500"></p>
             <p className=" font-bold text-2xl">Big Stories</p>
           </div>
-          <div className="  h-full w-full flex  flex-col p-2 gap-4  ">
-            {[1, 2, 3, 4].map(() => (
-              <div className="flex w-full p-2 rounded-xl h-auto gap-4 justify-center items-center  flex-col md:flex-row shadow-xl  transition ease-in-out delay-150 hover:-translate-y-0 hover:scale-110  duration-500 ">
-                <div className=" w-full  md:w-[200px] md:h-32  h-full   rounded-lg  ">
-                  <img
-                    className=" w-full h-full object-fill rounded-md "
-                    src="https://img-cdn.tnwcdn.com/image/tnw-blurple?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2024%2F06%2Fquantum-computer-e1718827535583.jpg&signature=e8841e3079ceeb5882a5625a1cf81589"
-                  />
-                </div>
-                <div className=" flex flex-col  ">
-                  <p className=" font-medium text-base text-justify">
-                    "Behind Justin Lamkin's five scoreless innings, Texas A&M
+          <div className="w-full flex  flex-col p-2">
+            {[1, 2, 3, 4, 5, 6].slice(0, 4).map((item: any, index: any) => (
+              <div className="flex w-full p-2 rounded-xl gap-4  flex-col md:flex-row shadow-xl  transition ease-in-out delay-150 hover:-translate-y-0 hover:scale-110  duration-500 ">
+                <img
+                  className="md:w-[150px] md:h-[200px] object-cover rounded-xl "
+                  src="https://assets2.cbsnewsstatic.com/hub/i/r/2024/06/12/9d0eb2a1-8a4c-464e-a59f-40a95d271a94/thumbnail/1200x630g2/5415d521bf16a916abf64fa2cd446062/ap24164789956147.jpg?v=cb1f2643a8816828741cfb3a3fb2d931"
+                />
+                <div className=" flex flex-col justify-center ">
+                  <p className=" font-bold">{item.title}</p>
+                  <p className=" font-normal text-sm md:text-sm text-justify">
+                    An FBI agent testified that Menendez's internet history
+                    since 2008 showed that he had never searched for gold prices
+                    until April 5, 2019.
                   </p>
                 </div>
               </div>

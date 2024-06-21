@@ -1,27 +1,37 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../Redux/Store/AppStore";
 
-function Carsouals() {
+function Carsouals({ query }: any) {
+  const data: any = useSelector((state: RootState) => state.setdata.data);
+  const fetchData = data?.[query] || [];
+  console.log("CARSOUALS DAAT!!!!!!!!!", data);
+
   return (
     <div className=" px-10  ">
       <div className=" flex px-2 items-center py-5 gap-2">
         <p className=" w-1 h-8 bg-red-500"></p>
-        <p className=" font-bold text-2xl my-5">Full Story</p>
+        <p className=" font-bold text-2xl my-5">{query}</p>
       </div>
 
       <div className=" md:flex gap-5  flex-wrap">
-        {[1, 2, 3, 4, 5, 6].map(() => (
-          <div className="w-full h-full md:max-w-[500px] p-2 bg-white rounded-md my-5 md:my-0 shadow-lg  ">
-            <img
-              className=" object-cover w-full h-full rounded-lg"
-              src="https://cdn.mos.cms.futurecdn.net/H7pxJnSUSSLBy3dNadjs7M-1200-80.jpg"
-            />
-            <p className=" px-2 text-justify py-2 text-base font-medium md:text-lg">
-              Lockdown mode requires a PIN or password to unlock your phone the
-              next time it's used. Know how to do it and why you might want to
-              before you need it.
-            </p>
-          </div>
-        ))}
+        {fetchData.slice(0, 7).map((item: any, index: any) => {
+          if (item?.urlToImage) {
+            return (
+              <div className="w-full md:h-min-[300px] md:max-w-[500px] p-2 bg-white rounded-md my-5 md:my-0 shadow-lg  ">
+                <img
+                  className=" object-cover w-full h-[300px] rounded-lg"
+                  src={item.urlToImage}
+                />
+                <p className=" px-2 text-justify py-2 text-base font-medium md:text-lg line-clamp-3">
+                  {item.description}
+                </p>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
     </div>
   );
