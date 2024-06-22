@@ -1,11 +1,20 @@
 import { IoMdSearch } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
-function Header () {
+import { useNavigate } from "react-router-dom";
+function Header() {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/");
+  };
   return (
     <div className=" bg-[#E2E2E3]">
       <div className=" flex justify-between items-center py-4 md:px-8 px-3">
-        <div>
-          <p className=" text-[#FF0000] font-bold md:text-2xl text-xl">
+        <div
+          onClick={() => {
+            handleNavigate();
+          }}
+        >
+          <p className=" text-[#FF0000] font-bold md:text-2xl text-xl cursor-pointer">
             News24
           </p>
         </div>
@@ -19,7 +28,7 @@ function Header () {
         </div>
         <div>
           <div className="w-10 h-10 bg-gray-600 rounded-full items-center flex justify-center">
-            <FaUserAlt size={ 20 } />
+            <FaUserAlt size={20} />
           </div>
         </div>
       </div>

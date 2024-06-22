@@ -5,7 +5,9 @@ import NewsCard from "../components/news-card";
 
 export default function CardTypeTwo ({ query, type }: any) {
   const data: any = useSelector((state: RootState) => state.setdata.data);
-  const fetchData = data?.[query] || [];
+  const fetchData = data?.[query] || []; 
+  const fetchData2 = data?.[type] || []; 
+
   const navigate = useNavigate();
 
   const handleDetailClick = async (item: any) => {
@@ -21,7 +23,7 @@ export default function CardTypeTwo ({ query, type }: any) {
 
       <div className="md:w-[30%] md:ml-4">
         <div className="grid grid-cols-1 gap-6 mb-4 mx-auto">
-          { fetchData?.slice(0, 6)?.map((item: any, index: any) => {
+          { fetchData2?.slice(0, 6)?.map((item: any, index: any) => {
             if (item?.urlToImage) {
               return (
                 <div key={ item?.title + item?.description }  onClick={ () => handleDetailClick(item) } className="w-full flex-col md:flex md:flex-row p-2 rounded-md shadow-xl cursor-pointer border-[0.5px]">
